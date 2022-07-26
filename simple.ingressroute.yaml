@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simple-subdomain
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`simple.synapacostam.tk`)
+      kind: Rule
+      services:
+        - name: simple-web-6b4d5c54fc-qd8rd
+          port: 80

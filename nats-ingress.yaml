@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simple-nats-ingress-client
+spec:
+  routes:
+    - match: Path(`/nats-client`)
+      kind: Rule
+      middlewares:
+        - name: simple-nats-client
+      services:
+        - name: my-nats
+          port: 4222
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: simple-nats-client
+spec:
+  stripPrefix:
+    prefixes:
+      - /nats-client

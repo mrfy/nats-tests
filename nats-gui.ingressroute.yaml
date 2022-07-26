@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nats-gui-subdomain
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nats-gui.synapacostam.tk`)
+      kind: Rule
+      services:
+        - name: my-nats
+          port: 8222

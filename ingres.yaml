@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simple-web-ingress
+spec:
+  routes:
+    - match: Path(`/simple`)
+      kind: Rule
+      middlewares:
+        - name: simple-stripprefix
+      services:
+        - name: simple-web-6b4d5c54fc-qd8rd
+          port: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: simple-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /simple

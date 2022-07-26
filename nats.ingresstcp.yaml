@@ -1,0 +1,25 @@
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRouteTCP
+# metadata:
+#   name: test-nats
+#   namespace: default
+# spec:
+#   routes:
+#     - match: HostSNI(`nats.synapacostam.tk`)
+#       services:
+#         - name: my-nats
+#           port: 4222
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: nats.tcp
+  namespace: default
+spec:
+  entryPoints:
+    - tcpep
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: my-nats
+          port: 4222
