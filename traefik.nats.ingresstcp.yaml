@@ -17,11 +17,9 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - tcpep
+    - websecure
   routes:
     - match: HostSNI(`*`)
       services:
         - name: my-nats
           port: 4222
-  tls:
-    passthrough: true

@@ -1,0 +1,14 @@
+additionalArguments:
+  - '--accesslog=true'
+  - '--accesslog.format=json'
+  - '--log.level=DEBUG'
+  - '--entrypoints.tcpep.address=:4222'
+
+deployment:
+  replicas: 1
+
+service:
+  spec:
+    loadBalancerIP: 13.82.110.54
+  annotations:
+    'service.beta.kubernetes.io/azure-load-balancer-resource-group': 'k8srg'

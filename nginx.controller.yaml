@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: simple.synapacostam.tk
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: simple-web-6b4d5c54fc-qd8rd
+                port:
+                  number: 80
